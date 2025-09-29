@@ -2,14 +2,32 @@ pipeline {
     agent any
 
     stages {
-        stage('Clonar y ejecutar script') {
+        stage('Build') {
             steps {
-                checkout([$class: 'GitSCM',
-                    branches: [[name: '*/main']],
-                    userRemoteConfigs: [[url: 'https://github.com/MarianoGarfel/jenkins-test.git']]
-                ])
+                echo '🔨 Construyendo el proyecto...'
+                sh 'chmod +x script.sh'
                 sh './script.sh'
             }
+        }
+
+        stage('Test') {
+            steps {
+                echo '🧪 Ejecutando pruebas...'
+                sh 'echo "Test OK ✅"'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo '🚀 Desplegando la aplicación...'
+                sh 'echo "Deploy completado ✅"'
+            }
+        }
+    }
+
+    post {
+        always {
+            echo '📜 Pipeline finalizado'
         }
     }
 }
