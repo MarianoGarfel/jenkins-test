@@ -4,7 +4,10 @@ pipeline {
     stages {
         stage('Clonar y ejecutar script') {
             steps {
-                git 'https://github.com/MarianoGarfel/jenkins-test.git'
+                checkout([$class: 'GitSCM',
+                    branches: [[name: '*/main']],
+                    userRemoteConfigs: [[url: 'https://github.com/MarianoGarfel/jenkins-test.git']]
+                ])
                 sh './script.sh'
             }
         }
