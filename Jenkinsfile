@@ -2,7 +2,7 @@ pipeline {
     agent { label 'windows' } // Fuerza a usar tu Windows agent
 
     environment {
-        AWS_ACCOUNT = 'XXXXeeXXX' // Aquí se pondrá el AWS account real
+        AWS_ACCOUNT = 'XXXaaXasddasXaaaaXaaaX' // Aquí se pondrá el AWS account real
     }
 
     parameters {
